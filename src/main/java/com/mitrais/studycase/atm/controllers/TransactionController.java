@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -25,7 +26,7 @@ public class TransactionController {
     @Value("${app.viewn.transaction}")
     private String nTransaction;
 
-    @RequestMapping(value = "/transaction", method = RequestMethod.GET)
+    @GetMapping(path = "/transaction")
     public ModelAndView inputAccountNumber(HttpServletRequest request, RedirectAttributes redirectAttributes) {
         ModelAndView view = new ModelAndView();
         try {
@@ -45,7 +46,7 @@ public class TransactionController {
         return view;
     }
 
-    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    @GetMapping(path = "/logout")
     public ModelAndView logout(HttpServletRequest request, RedirectAttributes redirectAttributes) {
         request.getSession().invalidate();
         return new ModelAndView("redirect:/");

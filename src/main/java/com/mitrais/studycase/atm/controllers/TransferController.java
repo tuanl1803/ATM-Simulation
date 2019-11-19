@@ -9,9 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -35,7 +33,7 @@ public class TransferController {
 	@Autowired
 	private TransactionServiceImpl transactionService;
 
-	@RequestMapping(value = "/transferDestination", method = RequestMethod.GET)
+	@GetMapping(path = "/transfer-destination")
 	public ModelAndView transferDestination(HttpServletRequest request, RedirectAttributes redirectAttributes) {
 		ModelAndView view = new ModelAndView();
 		try {
@@ -51,7 +49,7 @@ public class TransferController {
 		return view;
 	}
 
-	@RequestMapping(value = "/transferAmount", method = RequestMethod.GET)
+	@GetMapping(path ="/transfer-amount" )
 	public ModelAndView transferAmount(HttpServletRequest request, RedirectAttributes redirectAttributes,
                                        @RequestParam(value = "destination", required = true) String destination) {
 		ModelAndView view = new ModelAndView();
@@ -87,7 +85,7 @@ public class TransferController {
 		return view;
 	}
 
-	@RequestMapping(value = "/transferConfirm", method = RequestMethod.GET)
+	@GetMapping(path = "/transfer-confirm")
 	public ModelAndView transferConfirm(HttpServletRequest request, RedirectAttributes redirectAttributes,
                                         @RequestParam(value = "destination", required = true) String destination,
                                         @RequestParam(value = "amount", required = true) String amount) {
@@ -135,7 +133,7 @@ public class TransferController {
 		return view;
 	}
 
-	@RequestMapping(value = "/transfer", method = RequestMethod.POST)
+	@PostMapping(path = "/transfer")
 	public ModelAndView login(HttpServletRequest request, RedirectAttributes redirectAttributes,
                               @RequestParam(value = "destination", required = true) String destination,
                               @RequestParam(value = "reference", required = true) String reference,

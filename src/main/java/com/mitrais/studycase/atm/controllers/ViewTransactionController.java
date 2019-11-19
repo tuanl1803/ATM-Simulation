@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -38,7 +39,7 @@ public class ViewTransactionController {
 
 	private static List<Map<String, String>> formattedList;
 
-	@RequestMapping(value = "/viewTransaction", method = RequestMethod.GET)
+	@GetMapping(path =  "/view-transaction")
 	public ModelAndView inputAccountNumber(HttpServletRequest request, RedirectAttributes redirectAttributes) {
 		ModelAndView view = new ModelAndView();
 		try {
@@ -63,7 +64,6 @@ public class ViewTransactionController {
 			view.addObject("list", formattedList);
 			view.setViewName("view/transaction");
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
 			request.getSession().invalidate();
 			view = new ModelAndView("redirect:/");
 			redirectAttributes.addFlashAttribute("message", env.getProperty("app.unknown.error"));

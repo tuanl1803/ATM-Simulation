@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -20,7 +21,7 @@ public class WithdrawSummaryController {
     @Autowired
     private Environment env;
 
-    @RequestMapping(value = "/withdrawSummary", method = RequestMethod.GET)
+    @GetMapping(path = "/withdraw-summary")
     public ModelAndView withdrawSummary(HttpServletRequest request, RedirectAttributes redirectAttributes) {
         ModelAndView view = new ModelAndView();
         try {

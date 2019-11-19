@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,7 +36,7 @@ public class WithdrawController {
 	@Autowired
 	private TransactionServiceImpl transactionService;
 
-	@RequestMapping(value = "/withdraw", method = RequestMethod.GET)
+	@GetMapping(path = "/withdraw")
 	public ModelAndView withdraw(HttpServletRequest request, RedirectAttributes redirectAttributes) {
 		ModelAndView view = new ModelAndView();
 		try {
@@ -52,10 +53,10 @@ public class WithdrawController {
 		return view;
 	}
 
-	@RequestMapping(value = "/withdrawl", method = RequestMethod.GET)
-	public ModelAndView withdrawl(HttpServletRequest request, RedirectAttributes redirectAttributes,
+	@GetMapping(path ="/withdraw-amount")
+	public ModelAndView withdrawAmount(HttpServletRequest request, RedirectAttributes redirectAttributes,
                                   @RequestParam(value = "amount", required = true) String amount) {
-		ModelAndView view = new ModelAndView();
+		ModelAndView view;
 		try {
 			Account account = (Account) request.getSession().getAttribute("account");
 			if (account == null)

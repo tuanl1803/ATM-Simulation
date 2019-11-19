@@ -104,4 +104,13 @@ public class Transaction {
 	public void setReference(String reference) {
 		this.reference = reference;
 	}
+
+	public Transaction(TransactionType type, Account account, Double amount, Account destinationAccount, Date date, String reference) {
+		this.type = type;
+		this.account = account;
+		this.amount = amount;
+		this.destinationAccount = destinationAccount;
+		this.date = date;
+		this.reference = reference;
+	}
 }
