@@ -1,76 +1,57 @@
 package com.mitrais.studycase.atm.models;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
-@Table(name = "user")
-
+@Table(name = "account")
 public class Account {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
-    @Column(name = "name")
-    private String name;
-    @Column(name = "accNumber")
-    private String accNumber;
-    @Column(name = "pinNumber")
-    private String pinNumber;
-    @Column(name = "balance")
-    private int balance;
 
-    public int getId() {
-        return id;
-    }
+	@Column(name = "name", length = 64)
+	private String name;
 
-    public void setId(int id) {
-        this.id = id;
-    }
-    public String getName() {
-        return name;
-    }
+	@Column(name = "pin", length = 6)
+	private String pin;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	@Column(name = "balance")
+	private Double balance;
 
-    public String getAccNumber() {
-        return accNumber;
-    }
+	@Id
+	@Column(name = "account_number", length = 6)
+	private String accountNumber;
 
-    public void setAccNumber(String accNumber) {
-        this.accNumber = accNumber;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public String getPinNumber() {
-        return pinNumber;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public void setPinNumber(String pinNumber) {
-        this.pinNumber = pinNumber;
-    }
+	public String getPin() {
+		return pin;
+	}
 
-    public int getBalance() {
-        return balance;
-    }
+	public void setPin(String pin) {
+		this.pin = pin;
+	}
 
-    public void setBalance(int balance) {
-        this.balance = balance;
-    }
+	public Double getBalance() {
+		return balance;
+	}
 
-    public Account(String name, String accNumber, String pinNumber, int balance) {
-        this.name = name;
-        this.accNumber = accNumber;
-        this.pinNumber = pinNumber;
-        this.balance = balance;
-    }
+	public void setBalance(Double balance) {
+		this.balance = balance;
+	}
 
-    @Override
-    public String toString() {
-        return "Account{" +
-                "name='" + name + '\'' +
-                ", accNumber='" + accNumber + '\'' +
-                ", pinNumber='" + pinNumber + '\'' +
-                ", balance=" + balance +
-                '}';
-    }
+	public String getAccountNumber() {
+		return accountNumber;
+	}
+
+	public void setAccountNumber(String accountNumber) {
+		this.accountNumber = accountNumber;
+	}
+
 }
