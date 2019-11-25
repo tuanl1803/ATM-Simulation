@@ -4,7 +4,6 @@
 <head>
     <meta charset="utf-8">
     <title>ATM System Options: Account Details</title>
-    <!-- Loading Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
@@ -12,7 +11,6 @@
     <div class="demo-headline" style="padding: 0px;">
         <h1 class="demo-logo">
             ATM
-            <small>24 Hour Syariah Saving</small>
         </h1>
     </div>
     <!-- /demo-headline -->
@@ -28,25 +26,29 @@
                 <!-- Balance -->
                 <div class="col-xs-9">
                     <div class="col-xs-12">
-                        <div class="tile">
-                            <h4 class="text-uppercase balance">
-                                <span>Date</span>${ date }
-                            </h4>
-                        </div>
-                    </div>
-                    <div class="col-xs-12">
-                        <div class="tile">
-                            <h4 class="text-uppercase balance">
-                                <span>Withdraw</span>$${ withdraw }
-                            </h4>
-                        </div>
-                    </div>
-                    <div class="col-xs-12">
-                        <div class="tile">
-                            <h4 class="text-uppercase balance">
-                                <span>Balance</span>$${ balance }
-                            </h4>
-                        </div>
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Type</th>
+                                <th>Amount</th>
+                                <th>Destination</th>
+                                <th>Reference</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <c:forEach items="${list}" var="row" varStatus="loop">
+                                <tr>
+                                    <td><c:out value="${ row.date }"></c:out></td>
+                                    <td><c:out value="${ row.type }"></c:out></td>
+                                    <td>$<c:out value="${ row.amount }"></c:out></td>
+                                    <td><c:out
+                                            value="${ row.destinationAccount }"></c:out></td>
+                                    <td><c:out value="${ row.reference }"></c:out></td>
+                                </tr>
+                            </c:forEach>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
                 <!-- 1/4 -->

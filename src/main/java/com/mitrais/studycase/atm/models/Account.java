@@ -54,6 +54,9 @@ public class Account {
 		this.accountNumber = accountNumber;
 	}
 
+	public Account() {
+	}
+
 	public Account(String name, String pin, Double balance, String accountNumber) {
 		this.name = name;
 		this.pin = pin;

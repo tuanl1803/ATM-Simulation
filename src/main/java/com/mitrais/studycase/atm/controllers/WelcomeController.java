@@ -39,12 +39,16 @@ public class WelcomeController {
         ModelAndView view = new ModelAndView();
         try {
             Account account = (Account) request.getSession().getAttribute("account");
-            if (account != null)
-                return new ModelAndView("redirect:/transaction");
-            view.setViewName("welcome/inputAccountNumber");
+            if (account != null) {
+                view.setViewName("redirect:/transaction");
+            }
+            else {
+                view.setViewName("welcome/inputAccountNumber");
+            }
+
         } catch (Exception e) {
-            view = new ModelAndView("redirect:/");
             redirectAttributes.addFlashAttribute("message", env.getProperty("app.unknown.error"));
+            view.setViewName("redirect:/");
         }
         return view;
     }
@@ -89,14 +93,14 @@ public class WelcomeController {
                 stoper = true;
             }
             if (stoper) {
-                view = new ModelAndView("redirect:/");
+                view.setViewName("redirect:/");
                 redirectAttributes.addFlashAttribute("message", message);
             } else {
                 view.addObject("accountNumber", accountNumber);
                 view.setViewName("welcome/inputPin");
             }
         } catch (Exception e) {
-            view = new ModelAndView("redirect:/");
+            view.setViewName("redirect:/");
             redirectAttributes.addFlashAttribute("message", env.getProperty("app.unknown.error"));
         }
         return view;
@@ -106,10 +110,12 @@ public class WelcomeController {
     public ModelAndView login(HttpServletRequest request, RedirectAttributes redirectAttributes,
                               @RequestParam(value = "accountNumber", required = true) String accountNumber,
                               @RequestParam(value = "pin", required = true) String pin) {
+        ModelAndView view = new ModelAndView();
         try {
             Account account = (Account) request.getSession().getAttribute("account");
-            if (account != null)
-                return new ModelAndView("redirect:/transaction");
+            if (account != null){
+                view.setViewName("redirect:/transaction");
+            }
             boolean stoper = false;
             String message = "";
             if (pin.length() != 6) {
@@ -122,13 +128,13 @@ public class WelcomeController {
             }
             if (stoper) {
                 redirectAttributes.addFlashAttribute("message", message);
-                return new ModelAndView("redirect:/pin?an=" + accountNumber);
+                view.setViewName("redirect:/pin?an=" + accountNumber);
             }
             List<Account> listAccount = accountService.findByAccountNumberAndPin(accountNumber, pin);
             if (!listAccount.isEmpty()) {
                 message += env.getProperty("app.login.invalid");
                 redirectAttributes.addFlashAttribute("message", message);
-                return new ModelAndView("redirect:/");
+                view.setViewName("redirect:/");
 
             } else {
                 request.getSession().setAttribute("account", listAccount.get(0));
@@ -136,8 +142,9 @@ public class WelcomeController {
             }
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("message", env.getProperty("app.unknown.error"));
-            return new ModelAndView("redirect:/");
+            view.setViewName("redirect:/");
         }
+        return view;
     }
 
     private Function<String, Account> mapToItem = (line) -> {

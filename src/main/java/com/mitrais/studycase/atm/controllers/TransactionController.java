@@ -18,7 +18,7 @@ import java.text.DecimalFormat;
 @Controller
 @PropertySource("classpath:message.properties")
 @RequestMapping("")
-public class TransactionController {
+public class    TransactionController {
 
     @Autowired
     private Environment env;

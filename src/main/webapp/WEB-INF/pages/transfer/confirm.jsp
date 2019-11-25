@@ -12,7 +12,6 @@
     <div class="demo-headline" style="padding: 0px;">
         <h1 class="demo-logo">
             ATM
-            <small>24 Hour Syariah Saving</small>
         </h1>
     </div>
     <!-- /demo-headline -->

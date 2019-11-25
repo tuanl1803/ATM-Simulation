@@ -12,7 +12,6 @@
     <div class="demo-headline" style="padding: 0px;">
         <h1 class="demo-logo">
             ATM
-            <small>24 Hour Syariah Saving</small>
         </h1>
     </div>
     <!-- /demo-headline -->
@@ -22,8 +21,7 @@
 
             <!-- Replace Video with Animated Gif or Animated SVG -->
             <div class="row">
-                <div class="col-xs-8 text-center"
-                     style="border-right: solid 3px #CCC">
+                <div class="col-xs-8 text-center">
                     <h1 class="demo-section-title text-uppercase text-center">Input
                         Destination Account Number</h1>
                     <input type="text" id="userPinInput" class="form-control"
@@ -39,11 +37,6 @@
                     </div>
                     <span style="color: red;">${ message }</span>
                     <!-- // Pin Pad -->
-                </div>
-                <div class="col-xs-4">
-                    <div style="margin-top: 8rem;">
-                        <img src="img/CardInsertedGreenLight.png" style="width: 16em;"/>
-                    </div>
                 </div>
                 <!-- /.col-xs-4 -->
             </div>
