@@ -13,10 +13,9 @@ Steps to Setup
 1. Clone the application
 2. Create Mysql database
 create database atm
-3. Change mysql username and password as per your installation
+3. Change db configuration
    - Open src/main/resources/application.properties
-   - Change spring.datasource.username and spring.datasource.password as per your mysql installation
 4. Build and run the app using maven
   mvn spring-boot:run
-  You can login with AccNo : 123456 and PIN : 123456
 The app will start running at http://localhost:8080.
+5. Data sample: data.csv
