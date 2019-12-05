@@ -25,9 +25,9 @@
                     <h1 class="demo-section-title text-uppercase text-center">Input
                         Amount Transfer</h1>
                     <input id="destination" type="hidden" value="${ destination }">
-                    <input type="text" id="userPinInput" class="form-control"
+                    <input type="text" id="amountInput" class="form-control"
                            maxlength="4" style="text-align: center;" required="true"/>
-                    <div id="confirmPin">
+                    <div id="confirmAmount">
                         <a href="#"
                            class="btn btn-block btn-lg btn-success text-uppercase">Confirm</a>
                     </div>
@@ -48,5 +48,25 @@
 </div>
 <!-- /container -->
 <script src="js/jquery.min.js"></script>
+
+<script>
+    $(document)
+        .ready(
+            function() {
+                $("#confirmAmount")
+                    .click(
+                        function() {
+                            window.location
+                                .replace("${pageContext.request.contextPath}/transfer-confirm?destination="
+                                    + $(
+                                        "#destination")
+                                        .val()
+                                    + "&amount="
+                                    + $(
+                                        "#amountInput")
+                                        .val());
+                        });
+            });
+</script>
 </body>
 </html>

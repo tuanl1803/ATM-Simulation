@@ -24,9 +24,9 @@
                 <div class="col-xs-8 text-center">
                     <h1 class="demo-section-title text-uppercase text-center">Input
                         Destination Account Number</h1>
-                    <input type="text" id="userPinInput" class="form-control"
+                    <input type="text" id="destinationInput" class="form-control"
                            maxlength="6" style="text-align: center;" required="true"/>
-                    <div id="confirmPin">
+                    <div id="confirmDestination">
                         <a href="#"
                            class="btn btn-block btn-lg btn-success text-uppercase">Confirm</a>
                     </div>
@@ -48,17 +48,16 @@
 <!-- /container -->
 <script src="js/jquery.min.js"></script>
 <script>
-    videojs.options.flash.swf = "js/video-js.swf";
     $(document)
         .ready(
             function () {
-                $("#confirmPin")
+                $("#confirmDestination")
                     .click(
                         function () {
                             window.location
-                                .replace("${pageContext.request.contextPath}/transferAmount?destination="
+                                .replace("${pageContext.request.contextPath}/transfer-amount?destination="
                                     + $(
-                                        "#userPinInput")
+                                        "#destinationInput")
                                         .val());
                         });
             });
