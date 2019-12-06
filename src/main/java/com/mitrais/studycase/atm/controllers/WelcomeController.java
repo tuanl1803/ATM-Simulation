@@ -56,7 +56,7 @@ public class WelcomeController {
     @PostMapping(path = "/upload")
     public ModelAndView upload(HttpServletRequest request, RedirectAttributes redirectAttributes,
                                @RequestParam("file") MultipartFile file) {
-        List<Account> inputList = new ArrayList<>();
+        List<Account> inputList;
         try {
             InputStream inputFS = file.getInputStream();
             BufferedReader br = new BufferedReader(new InputStreamReader(inputFS));
@@ -131,7 +131,7 @@ public class WelcomeController {
                 view.setViewName("redirect:/pin?an=" + accountNumber);
             }
             List<Account> listAccount = accountService.findByAccountNumberAndPin(accountNumber, pin);
-            if (!listAccount.isEmpty()) {
+            if (listAccount.isEmpty()) {
                 message += env.getProperty("app.login.invalid");
                 redirectAttributes.addFlashAttribute("message", message);
                 view.setViewName("redirect:/");

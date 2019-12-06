@@ -71,7 +71,7 @@ public class TransferController {
 			}
 
 			if (stoper) {
-				view = new ModelAndView("redirect:/transferDestination");
+				view = new ModelAndView("redirect:/destination");
 				redirectAttributes.addFlashAttribute("message", message);
 			} else {
 				view.addObject("destination", destination);
@@ -115,7 +115,7 @@ public class TransferController {
 			}
 
 			if (stoper) {
-				view = new ModelAndView("redirect:/transferAmount");
+				view = new ModelAndView("redirect:/transfer-amount");
 				redirectAttributes.addFlashAttribute("message", message);
 			} else {
 				view.addObject("accountNumber", account.getAccountNumber());
@@ -191,7 +191,7 @@ public class TransferController {
 				redirectAttributes.addFlashAttribute("amount", amount);
 				redirectAttributes.addFlashAttribute("reference", reference);
 				redirectAttributes.addFlashAttribute("balance", account.getBalance());
-				view = new ModelAndView("redirect:/transferSummary");
+				view = new ModelAndView("redirect:/transfer-summary");
 			}
 		} catch (Exception e) {
 			view = new ModelAndView("redirect:/");

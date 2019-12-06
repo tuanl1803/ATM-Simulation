@@ -40,13 +40,13 @@ public class ViewTransactionController {
 	private static List<Map<String, String>> formattedList;
 
 	@GetMapping(path =  "/view-transaction")
-	public ModelAndView inputAccountNumber(HttpServletRequest request, RedirectAttributes redirectAttributes) {
+	public ModelAndView viewTransaction(HttpServletRequest request, RedirectAttributes redirectAttributes) {
 		ModelAndView view = new ModelAndView();
 		try {
 			Account account = (Account) request.getSession().getAttribute("account");
 			if (account == null)
 				return new ModelAndView("redirect:/");
-			formattedList = new ArrayList<Map<String, String>>();
+			formattedList = new ArrayList<>();
 			List<Transaction> listTransaction = transactionService.findNTransaction(account.getAccountNumber(),
 					nTransaction);
 			listTransaction.forEach(transaction -> {
@@ -62,7 +62,7 @@ public class ViewTransactionController {
 				formattedList.add(formatted);
 			});
 			view.addObject("list", formattedList);
-			view.setViewName("view/transaction");
+			view.setViewName("transaction/transaction");
 		} catch (Exception e) {
 			request.getSession().invalidate();
 			view = new ModelAndView("redirect:/");
