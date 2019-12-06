@@ -18,7 +18,7 @@ import java.text.DecimalFormat;
 @Controller
 @PropertySource("classpath:message.properties")
 @RequestMapping("")
-public class    TransactionController {
+public class TransactionController {
 
     @Autowired
     private Environment env;
@@ -27,7 +27,7 @@ public class    TransactionController {
     private String nTransaction;
 
     @GetMapping(path = "/transaction")
-    public ModelAndView inputAccountNumber(HttpServletRequest request, RedirectAttributes redirectAttributes) {
+    public ModelAndView transaction(HttpServletRequest request, RedirectAttributes redirectAttributes) {
         ModelAndView view = new ModelAndView();
         try {
             Account account = (Account) request.getSession().getAttribute("account");
