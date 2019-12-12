@@ -44,25 +44,28 @@ public class ViewTransactionController {
 		ModelAndView view = new ModelAndView();
 		try {
 			Account account = (Account) request.getSession().getAttribute("account");
-			if (account == null)
-				return new ModelAndView("redirect:/");
-			formattedList = new ArrayList<>();
-			List<Transaction> listTransaction = transactionService.findNTransaction(account.getAccountNumber(),
-					nTransaction);
-			listTransaction.forEach(transaction -> {
-				Map<String, String> formatted = new HashMap<String, String>();
-				DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm a");
-				formatted.put("date", dateFormat.format(transaction.getDate()));
-				formatted.put("type", transaction.getType().toString());
-				DecimalFormat formatter = new DecimalFormat("#,###.00");
-				formatted.put("amount", formatter.format(transaction.getAmount()));
-				if (transaction.getDestinationAccount() != null)
-					formatted.put("destinationAccount", transaction.getDestinationAccount().getAccountNumber());
-				formatted.put("reference", transaction.getReference());
-				formattedList.add(formatted);
-			});
-			view.addObject("list", formattedList);
-			view.setViewName("transaction/transaction");
+			if (account == null){
+				view.setViewName("redirect:/");
+			} else {
+				formattedList = new ArrayList<>();
+				List<Transaction> listTransaction = transactionService.findNTransaction(account.getAccountNumber(),
+						nTransaction);
+				listTransaction.forEach(transaction -> {
+					Map<String, String> formatted = new HashMap<String, String>();
+					DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm a");
+					formatted.put("date", dateFormat.format(transaction.getDate()));
+					formatted.put("type", transaction.getType().toString());
+					DecimalFormat formatter = new DecimalFormat("#,###.00");
+					formatted.put("amount", formatter.format(transaction.getAmount()));
+					if (transaction.getDestinationAccount() != null)
+						formatted.put("destinationAccount", transaction.getDestinationAccount().getAccountNumber());
+					formatted.put("reference", transaction.getReference());
+					formattedList.add(formatted);
+				});
+				view.addObject("list", formattedList);
+				view.setViewName("transaction/transaction");
+			}
+
 		} catch (Exception e) {
 			request.getSession().invalidate();
 			view = new ModelAndView("redirect:/");

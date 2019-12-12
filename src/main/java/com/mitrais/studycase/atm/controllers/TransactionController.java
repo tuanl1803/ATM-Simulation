@@ -31,16 +31,20 @@ public class TransactionController {
         ModelAndView view = new ModelAndView();
         try {
             Account account = (Account) request.getSession().getAttribute("account");
-            if (account == null)
-                return new ModelAndView("redirect:/");
-            DecimalFormat formatter = new DecimalFormat("#,###.00");
-            view.addObject("accountNumber", account.getAccountNumber());
-            view.addObject("balance", formatter.format(account.getBalance()));
-            view.addObject("nTransaction", nTransaction);
-            view.setViewName("transaction/index");
+            if (account == null) {
+                view.setViewName("redirect:/");
+            } else {
+                DecimalFormat formatter = new DecimalFormat("#,###.00");
+                view.addObject("accountNumber", account.getAccountNumber());
+                view.addObject("balance", formatter.format(account.getBalance()));
+                view.addObject("nTransaction", nTransaction);
+                view.setViewName("transaction/index");
+            }
+
+
         } catch (Exception e) {
             request.getSession().invalidate();
-            view = new ModelAndView("redirect:/");
+            view.setViewName("redirect:/");
             redirectAttributes.addFlashAttribute("message", env.getProperty("app.unknown.error"));
         }
         return view;

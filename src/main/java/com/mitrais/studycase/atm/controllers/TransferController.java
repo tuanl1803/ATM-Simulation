@@ -38,12 +38,14 @@ public class TransferController {
 		ModelAndView view = new ModelAndView();
 		try {
 			Account account = (Account) request.getSession().getAttribute("account");
-			if (account == null)
-				return new ModelAndView("redirect:/");
-			view.setViewName("transfer/destination");
+			if (account == null){
+				view.setViewName("redirect:/");
+			} else {
+				view.setViewName("transfer/destination");
+			}
 		} catch (Exception e) {
 			request.getSession().invalidate();
-			view = new ModelAndView("redirect:/");
+			view.setViewName("redirect:/");
 			redirectAttributes.addFlashAttribute("message", env.getProperty("app.unknown.error"));
 		}
 		return view;
@@ -134,7 +136,7 @@ public class TransferController {
 	}
 
 	@PostMapping(path = "/transfer")
-	public ModelAndView login(HttpServletRequest request, RedirectAttributes redirectAttributes,
+	public ModelAndView transfer(HttpServletRequest request, RedirectAttributes redirectAttributes,
                               @RequestParam(value = "destination", required = true) String destination,
                               @RequestParam(value = "reference", required = true) String reference,
                               @RequestParam(value = "amount", required = true) String amount) {

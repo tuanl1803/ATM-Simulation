@@ -25,12 +25,14 @@ public class TransferSummaryController {
 		ModelAndView view = new ModelAndView();
 		try {
 			Account account = (Account) request.getSession().getAttribute("account");
-			if (account == null)
-				return new ModelAndView("redirect:/");
-			view.setViewName("transfer/summary");
+			if (account == null){
+				view.setViewName("redirect:/");
+			} else {
+				view.setViewName("transfer/summary");
+			}
 		} catch (Exception e) {
 			request.getSession().invalidate();
-			view = new ModelAndView("redirect:/");
+			view.setViewName("redirect:/");
 			redirectAttributes.addFlashAttribute("message", env.getProperty("app.unknown.error"));
 		}
 		return view;
